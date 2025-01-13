@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import FollowBar from "@/components/FollowBar";
 
 export const metadata: Metadata = {
   title: "Twitter Clone",
@@ -22,6 +23,7 @@ export default function RootLayout({
               <div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800 ">
                 {children}
               </div>
+              <FollowBar />
             </div>
           </div>
         </div>

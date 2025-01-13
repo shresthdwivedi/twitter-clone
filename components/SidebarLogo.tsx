@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 
 
-const SideBarLogo = () => {
+const SidebarLogo = () => {
     const router = useRouter();
 
     return (
@@ -17,4 +17,4 @@ const SideBarLogo = () => {
     )
 }
 
-export default SideBarLogo;
+export default SidebarLogo;

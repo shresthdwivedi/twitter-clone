@@ -1,9 +1,11 @@
 'use client';
 
-import SideBarLogo from "./SideBarLogo";
-import SideBarItem from "./SideBarItem";
+import SidebarLogo from "./SidebarLogo";
+import SidebarItem from "./SidebarItem";
 import { HiOutlineBell, HiOutlineUser } from "react-icons/hi";
 import { PiHouseBold } from "react-icons/pi";
+import { TbLogout2 } from "react-icons/tb";
+import SidebarTweet from "./SidebarTweet";
 
 const Sidebar = () => {
 
@@ -28,15 +30,17 @@ const Sidebar = () => {
         <div className="col-span-1 h-full pr-4 md:pr-6">
             <div className="flex flex-col items-end">
                 <div className="space-y-2 lg:w-[230px]">
-                    <SideBarLogo />
+                    <SidebarLogo />
                     {items.map((item) => (
-                        <SideBarItem 
+                        <SidebarItem 
                             key={item.href} 
                             href={item.href}
                             label={item.label}
                             icon={item.icon} 
                         />
                     )) }
+                    <SidebarItem label="Logout" icon={TbLogout2}/>
+                    <SidebarTweet />
                 </div>
             </div>
         </div>
