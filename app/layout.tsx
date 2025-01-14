@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import FollowBar from "@/components/FollowBar";
+import Sidebar from "@/components/layout/Sidebar";
+import FollowBar from "@/components/layout/FollowBar";
+import RegisterModal from "@/components/modals/RegisterModal";
+import LoginModal from "@/components/modals/LoginModal";
+
 
 export const metadata: Metadata = {
   title: "Twitter Clone",
@@ -16,6 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <LoginModal />
+        <RegisterModal />
         <div className="bg-black h-screen">
           <div className="container h-full mx-auto xl:px-30 max-w-6xl">
             <div className="grid grid-cols-4 h-full"> 

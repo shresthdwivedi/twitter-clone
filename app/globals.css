@@ -2,4 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    @apply bg-black h-full
+}
+
+body {
+    @apply bg-black h-full
+}
 
