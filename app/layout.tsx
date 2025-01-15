@@ -4,6 +4,8 @@ import Sidebar from "@/components/layout/Sidebar";
 import FollowBar from "@/components/layout/FollowBar";
 import RegisterModal from "@/components/modals/RegisterModal";
 import LoginModal from "@/components/modals/LoginModal";
+import { Providers } from "./providers";
+import { Toaster } from "react-hot-toast";
 
 
 export const metadata: Metadata = {
@@ -19,6 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Providers>
+        <Toaster />
         <LoginModal />
         <RegisterModal />
         <div className="bg-black h-screen">
@@ -32,6 +36,7 @@ export default function RootLayout({
             </div>
           </div>
         </div>
+        </Providers>
       </body>
     </html>
   );

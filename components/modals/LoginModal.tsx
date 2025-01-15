@@ -5,6 +5,9 @@ import { useCallback, useState } from "react";
 import Modal from "../layout/Modal";
 import Input from "../layout/Input";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const LoginModal = () => {
 
@@ -19,8 +22,14 @@ const LoginModal = () => {
         try{
             setIsLoading(true);
 
-            // add signin
-
+            
+            signIn('credentials', {
+                email,
+                password,
+            });
+            
+            toast.success("Logged in Successfully");
+            
             loginModal.onClose();
         }
         catch(error){
@@ -30,7 +39,7 @@ const LoginModal = () => {
             setIsLoading(false);
         }
 
-    }, [loginModal])
+    }, [loginModal, email, password])
     const onToggle = useCallback(() => {
         try{
             if(isLoading){
@@ -47,14 +56,14 @@ const LoginModal = () => {
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Input 
-                type={email}
+                type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 value={email}
                 disabled={isLoading}
             />
             <Input 
-                type={password}
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 value={password}
@@ -69,7 +78,7 @@ const footerContent = (
         <span 
             onClick={onToggle}
             className="ml-2 text-white hover:underline hover:cursor-pointer">
-            Sign Up
+            Create an Account
         </span>
     </div>
 )

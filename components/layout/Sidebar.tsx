@@ -6,8 +6,12 @@ import { HiOutlineBell, HiOutlineUser } from "react-icons/hi";
 import { PiHouseBold } from "react-icons/pi";
 import { TbLogout2 } from "react-icons/tb";
 import SidebarTweet from "./SidebarTweet";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
+
+    const { data: currentUser } = useCurrentUser();
 
     const items = [
         {
@@ -19,11 +23,13 @@ const Sidebar = () => {
             label: 'Notificaitons',
             href: '/notificaitons',
             icon: HiOutlineBell,
+            auth: true,
         },
         {
             label: 'Profile',
             href: '/users/123',
             icon: HiOutlineUser,
+            auth: true,
         },
     ]
     return ( 
@@ -37,9 +43,12 @@ const Sidebar = () => {
                             href={item.href}
                             label={item.label}
                             icon={item.icon} 
+                            auth={item.auth}
                         />
                     )) }
-                    <SidebarItem label="Logout" icon={TbLogout2}/>
+                    {currentUser && 
+                        <SidebarItem onClick={() => signOut()} label="Logout" icon={TbLogout2}/>
+                    }
                     <SidebarTweet />
                 </div>
             </div>
