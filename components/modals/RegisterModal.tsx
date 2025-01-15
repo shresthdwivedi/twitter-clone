@@ -2,8 +2,8 @@
 
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { useCallback, useState } from "react";
-import Modal from "../layout/Modal";
-import Input from "../layout/Input";
+import Modal from "../Modal";
+import Input from "../Input";
 import useLoginModal from "@/hooks/useLoginModal";
 import axios from "axios";
 import toast from "react-hot-toast";

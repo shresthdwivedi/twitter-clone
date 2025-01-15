@@ -15,7 +15,7 @@ const serverAuth = async () => {
         }
     })
     if(!currentUser){
-        throw new Error('User not found');
+        return {error: 'User not found'};
     }
     return currentUser;
 }

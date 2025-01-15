@@ -2,10 +2,9 @@
 
 import useLoginModal from "@/hooks/useLoginModal";
 import { useCallback, useState } from "react";
-import Modal from "../layout/Modal";
-import Input from "../layout/Input";
+import Modal from "../Modal";
+import Input from "../Input";
 import useRegisterModal from "@/hooks/useRegisterModal";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 
@@ -22,18 +21,17 @@ const LoginModal = () => {
         try{
             setIsLoading(true);
 
-            
             signIn('credentials', {
                 email,
                 password,
             });
-            
             toast.success("Logged in Successfully");
             
             loginModal.onClose();
         }
         catch(error){
             console.error(error);
+            toast.error("Failed to login");
         }
         finally{
             setIsLoading(false);
@@ -74,7 +72,7 @@ const LoginModal = () => {
 
 const footerContent = (
     <div className="mt-4 text-center text-neutral-400">
-        Don't have an account?
+        Don&apos;t have an account?
         <span 
             onClick={onToggle}
             className="ml-2 text-white hover:underline hover:cursor-pointer">
