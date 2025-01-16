@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, { params }: { params: Promise<{ userId: string}>}) {
     try{
-        const { userId } = await params;////////
+        const { userId } = await params;
         
         if(!userId){
             throw new Error("Sign in to view user details");

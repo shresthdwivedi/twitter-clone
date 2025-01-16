@@ -6,6 +6,7 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import LoginModal from "@/components/modals/LoginModal";
 import { Providers } from "./providers";
 import { Toaster } from "react-hot-toast";
+import EditModal from "@/components/modals/EditModals";
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body>
         <Providers>
         <Toaster />
+        <EditModal />
         <LoginModal />
         <RegisterModal />
         <div className="bg-black h-screen">
