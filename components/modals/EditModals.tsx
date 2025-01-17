@@ -7,6 +7,8 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Modal from "../Modal";
+import Input from "../Input";
+import ImageUpload from "../ImageUpload";
 
 const EditModal = () => {
     
@@ -50,7 +52,45 @@ const EditModal = () => {
         }finally {
             setIsLoading(false);
         }
-    }, [name, username, bio, coverImage, profileImage])
+    }, [name, username, bio, coverImage, profileImage, editModal, mutateFetchedUser])
+
+    const bodyContent = (
+        <div className="flex flex-col gap-4">
+            <ImageUpload 
+                value={profileImage}
+                disabled={isLoading}
+                onChange={(image) => setProfileImage(image)}
+                label="Update Profile Image"
+            />
+            <ImageUpload 
+                value={coverImage}
+                disabled={isLoading}
+                onChange={(image) => setCoverImage(image)}
+                label="Update Cover Image"
+            />
+            <Input 
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+                type="text"
+            />
+            <Input 
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                disabled={isLoading}
+                type="text"
+            />
+            <Input 
+                placeholder="Bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                disabled={isLoading}
+                type="text"
+            />
+        </div>
+    )
 
     return (
         <Modal 
@@ -60,6 +100,7 @@ const EditModal = () => {
             onSubmit={onSubmit}
             disabled={isLoading}
             actionLabel="Save"
+            body={bodyContent}
         />
     )
 }
