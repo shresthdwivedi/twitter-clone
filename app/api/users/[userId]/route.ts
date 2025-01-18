@@ -19,7 +19,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ userId: 
             throw new Error("User not found");
         }
 
-        const followersCount = await prisma.user.count({
+        const followerCount = await prisma.user.count({
             where: {
                 followingIds: {
                     has: userId
@@ -27,8 +27,9 @@ export async function GET(req: Request, { params }: { params: Promise<{ userId: 
             }
         })
         const { hashedPassword, ...safeUser } = existingUser;
+        const updatedUser = { ...safeUser, followerCount }; 
         
-        return NextResponse.json({ ...safeUser, followersCount });
+        return NextResponse.json(updatedUser);
     }
     catch(error) {
         console.error(error);
