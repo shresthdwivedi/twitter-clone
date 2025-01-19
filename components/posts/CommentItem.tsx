@@ -30,30 +30,30 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
     return (
         <div>
             <div className="border-b-[1px] text-white p-5 border-neutral-800 cursor-pointer hover:bg-neutral-900 transition ">
-            <div className="flex flex-row items-start gap-3">
-                <Avatar userId={data.user.id} />
-                <div>
-                    <div className="flex flex-row items-center gap-2">
-                        <p 
-                            onClick={goToUser}
-                            className="text-white font-semibold cursor-pointer hover:underline">
-                            {data.user.name}
-                        </p>
-                        <span 
-                            onClick={goToUser}
-                            className="text-neutral-500 hidden md:block cursor-pointer hover:underline">
-                            @{data.user.username}
-                        </span>
-                        <span className="text-neutral-500 text-sm">
-                            {createdAt} ago
-                        </span>
-                    </div>
-                    <div className="text-white mt-1 ">
-                        {data.body}
+                <div className="flex flex-row items-start gap-3">
+                    <Avatar userId={data.user.id} />
+                    <div>
+                        <div className="flex flex-row items-center gap-2">
+                            <p 
+                                onClick={goToUser}
+                                className="text-white font-semibold cursor-pointer hover:underline">
+                                {data.user.name}
+                            </p>
+                            <span 
+                                onClick={goToUser}
+                                className="text-neutral-500 hidden md:block cursor-pointer hover:underline">
+                                @{data.user.username}
+                            </span>
+                            <span className="text-neutral-500 text-sm">
+                                {createdAt} ago
+                            </span>
+                        </div>
+                        <div className="text-white mt-1 ">
+                            {data.body}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }
