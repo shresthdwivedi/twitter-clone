@@ -23,6 +23,7 @@ export async function POST(req: Request) {
         }
 
         const updatedLikeIds = post.likeIds?.includes(currentUser.id) ? post.likeIds : [...(post.likeIds || []), currentUser.id];
+
         const updatedPost = await prisma.post.update({
             where: {
                 id: postId,
@@ -31,6 +32,28 @@ export async function POST(req: Request) {
                 likeIds: updatedLikeIds,
             }
         })
+
+        try{
+            if(post?.userId) {
+                await prisma.notification.create({
+                    data: {
+                        body: `${currentUser.username} liked your post`,
+                        userId: post.userId,
+                    }
+                })
+                await prisma.user.update({
+                    where: {
+                        id: post.userId,
+                    },
+                    data: {
+                        hasNotification: true,
+                    }
+                })
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
         return NextResponse.json(updatedPost);
 
     } catch(error) {

@@ -20,10 +20,11 @@ const Sidebar = () => {
             icon: PiHouseBold,
         },
         {
-            label: 'Notificaitons',
-            href: '/notificaitons',
+            label: 'Notifications',
+            href: `/notifications/${currentUser?.id}`,
             icon: HiOutlineBell,
             auth: true,
+            alert: currentUser?.hasNotification,
         },
         {
             label: 'Profile',
@@ -44,6 +45,7 @@ const Sidebar = () => {
                             label={item.label}
                             icon={item.icon} 
                             auth={item.auth}
+                            alert={item.alert}
                         />
                     )) }
                     {currentUser && 
