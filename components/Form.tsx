@@ -9,6 +9,7 @@ import Button from "./Button";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Avatar from "./Avatar";
+import usePost from "@/hooks/usePost";
 
 interface FormProps {
     placeholder: string,
@@ -27,6 +28,7 @@ const Form: React.FC<FormProps> = ({
 
     const { data: currentUser } = useCurrentUser();
     const { mutate: mutatePosts } = usePosts();
+    const { mutate: mutatePost } = usePost(postId);
 
     const [body, setBody] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -43,6 +45,7 @@ const Form: React.FC<FormProps> = ({
 
             setBody('');
             mutatePosts();
+            mutatePost();
         } catch(error) {
             console.error(error);
             toast.error('Failed to create tweet');

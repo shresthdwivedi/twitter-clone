@@ -6,6 +6,7 @@ import { ClipLoader } from "react-spinners";
 import Header from "../Header";
 import PostItem from "./PostItem";
 import Form from "../Form";
+import CommentFeed from "./CommentFeed";
 
 const PostView = () => {
 
@@ -26,6 +27,7 @@ const PostView = () => {
             <Header label="Tweet" showBackArrow/>
             <PostItem data={fetchedPost}/>
             <Form postId={postId as string} isComment placeholder="Reply..."/>
+            <CommentFeed comments={fetchedPost?.comments} />
         </div>
     )
 }

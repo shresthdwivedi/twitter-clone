@@ -1,12 +1,13 @@
 import prisma from "@/lib/db";
 import serverAuth from "@/lib/serverAuth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request, { params }: { params: Promise<{ postId: string }> }) {
+export async function POST(req: NextRequest) {
     try {
         const currentUser = await serverAuth();
         const { body } = await req.json();
-        const { postId } = await params;
+        const searchParams = req.nextUrl.searchParams;
+        const postId = searchParams.get('postId');
 
         if(!postId || typeof postId !== 'string') {
             return NextResponse.json({ status: 400 });
