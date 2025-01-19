@@ -23,11 +23,11 @@ const EditModal = () => {
     const [ coverImage, setCoverImage ] = useState('');
 
     useEffect(() => {
-        setProfileImage(currentUser?.profileImage);
-        setName(currentUser?.name);
-        setUsername(currentUser?.username);
-        setBio(currentUser?.bio);
-        setCoverImage(currentUser?.coverImage);
+        setProfileImage(currentUser?.profileImage || '');
+        setName(currentUser?.name || '');
+        setUsername(currentUser?.username || '');
+        setBio(currentUser?.bio || '');
+        setCoverImage(currentUser?.coverImage || '');
     }, [currentUser?.profileImage, currentUser?.name, currentUser?.username, currentUser?.bio, currentUser?.coverImage])
 
     const [ isLoading, setIsLoading ] = useState(false);

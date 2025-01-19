@@ -1,11 +1,10 @@
 import prisma from "@/lib/db";
 import serverAuth from "@/lib/serverAuth";
-import { Post } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     try{ 
-        const currentUser = serverAuth();
+        const currentUser = await serverAuth();
         const { postId } = await req.json();
         if(!postId || typeof postId !== 'string'){
             return NextResponse.json({ error: "Invalid post id" }, { status: 400 });
@@ -23,8 +22,7 @@ export async function GET(req: Request) {
             return NextResponse.json({ error: "Post not found" }, { status: 404 });
         }
 
-        const updatedLikeIds = [...(post.likeIds || []), (currentUser.id as string) ]
-
+        const updatedLikeIds = post.likeIds?.includes(currentUser.id) ? post.likeIds : [...(post.likeIds || []), currentUser.id];
         const updatedPost = await prisma.post.update({
             where: {
                 id: postId,
@@ -43,7 +41,7 @@ export async function GET(req: Request) {
 
 export async function DELETE(req: Request) {
     try{ 
-        const currentUser = serverAuth();
+        const currentUser = await serverAuth();
         const { postId } = await req.json();
         if(!postId || typeof postId !== 'string'){
             return NextResponse.json({ error: "Invalid post id" }, { status: 400 });
@@ -62,7 +60,6 @@ export async function DELETE(req: Request) {
         }
 
         const updatedLikeIds = [...(post.likeIds || [])].filter(likedId => likedId !== currentUser.id)
-
         const updatedPost = await prisma.post.update({
             where: {
                 id: postId,

@@ -34,8 +34,11 @@ const Form: React.FC<FormProps> = ({
     const handleSubmit = useCallback(async() => {
         try {
             setIsLoading(true);
+            const url = isComment 
+                ? `/api/comments?postId=${postId}` 
+                : '/api/posts';
 
-            await axios.post('/api/posts', { body })
+            await axios.post(url, { body })
             toast.success('Tweet created');
 
             setBody('');
