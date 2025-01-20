@@ -33,6 +33,26 @@ export async function POST(req: Request) {
                 followingIds: updatedFollowingIds,
             }
         })
+
+        try{
+            await prisma.notification.create({
+                data: {
+                    body: `${currentUser.username} followed you!`,
+                    userId,
+                }
+            })
+            await prisma.user.update({
+                where: {
+                    id: userId,
+                },
+                data: {
+                    hasNotification: true,
+                }
+            })
+        } catch (error) {
+            console.error(error);
+        }
+        
         return NextResponse.json(updatedUser);
 
     } catch(error) {
@@ -78,25 +98,6 @@ export async function DELETE(req: Request) {
                 followingIds: updatedFollowingIds,
             }
         })
-
-        try{
-            await prisma.notification.create({
-                data: {
-                    body: `${currentUser.username} followed you!`,
-                    userId,
-                }
-            })
-            await prisma.user.update({
-                where: {
-                    id: userId,
-                },
-                data: {
-                    hasNotification: true,
-                }
-            })
-        } catch (error) {
-            console.error(error);
-        }
 
         return NextResponse.json(updatedUser);
 
