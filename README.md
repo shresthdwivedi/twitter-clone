@@ -1,8 +1,8 @@
 # Twitter Clone
 
-A Twitter clone built with NextJs Framework with type-safety of Typescript. This project is a full-stack application that replicates the core functionalities of Twitter.
+A Twitter clone built with TypeScript. This project is a full-stack application that replicates the core functionalities of Twitter.
 
-
+🔗 [Live Link](https://twitter-clone-shresth.vercel.app/) 
 
 ## 🚀 Tech Used
 
@@ -12,7 +12,7 @@ A Twitter clone built with NextJs Framework with type-safety of Typescript. This
 | ![TypeScript](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg) | Ensures type safety and better developer experience |
 | ![Prisma](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg) | ORM for interacting with the database efficiently |
 | ![Tailwind CSS](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg) | Utility-first CSS framework for styling |
-| ![Vercel](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg) | Hosting and deployment platform for the app |
+| ![Zustand](https://user-images.githubusercontent.com/958486/218346783-72be5ae3-b953-4dd7-b239-788a882fdad6.svg) | Lightweight and flexible state management library |
 
 ## Table of Contents
 
